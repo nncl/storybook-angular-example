@@ -9,8 +9,17 @@ const meta: Meta<CardComponent> = {
   excludeStories: /.*Data$/,
   tags: ['autodocs'],
   render: (args: CardComponent) => ({
-    template: '<app-card>Hello world</app-card>'
+    props: {
+      ...args,
+      color: args.color,
+    },
+    template: '<app-card [color]="color">Hello world</app-card>',
   }),
+  argTypes: {
+    color: {
+      control: 'color',
+    },
+  },
 };
 
 export default meta;
@@ -18,5 +27,7 @@ type Story = StoryObj<CardComponent>;
 
 // More on writing stories with args: https://storybook.js.org/docs/angular/writing-stories/args
 export const Default: Story = {
-  args: {},
+  args: {
+    color: '#a00'
+  },
 };

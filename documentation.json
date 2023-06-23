@@ -72,7 +72,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<h1>Components</h1>\n\n<app-card>\n  Hello card\n</app-card>\n"
+            "templateData": "<h1>Components</h1>\n\n<app-card>\n  Hello card\n</app-card>\n\n<app-card color=\"#a00\">\n  Hello card\n</app-card>\n"
         },
         {
             "name": "ButtonComponent",
@@ -208,7 +208,7 @@
         },
         {
             "name": "CardComponent",
-            "id": "component-CardComponent-ed0434a7d5cad348e3f92ec020b6a454c28614ecca62fdc54e0ee57ed5eb7534c57e690c3d682670293a32434a876bd1df96a7cb43f074608860cb937ca22088",
+            "id": "component-CardComponent-45804ba1f2162312831c7d6928b88d531fee8fb2adfb61082e390fe46518e61543176fcde1a94ebf95feef2633fea0234631a09766118f99ba10410a41b84849",
             "file": "src/app/components/card/card.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -225,7 +225,17 @@
             ],
             "viewProviders": [],
             "hostDirectives": [],
-            "inputsClass": [],
+            "inputsClass": [
+                {
+                    "name": "color",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
             "outputsClass": [],
             "propertiesClass": [],
             "methodsClass": [],
@@ -234,20 +244,27 @@
             "hostBindings": [],
             "hostListeners": [],
             "standalone": true,
-            "imports": [],
+            "imports": [
+                {
+                    "name": "NgClass"
+                },
+                {
+                    "name": "NgStyle"
+                }
+            ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-card',\n  templateUrl: './card.component.html',\n  styleUrls: ['./card.component.scss'],\n  standalone: true\n})\nexport class CardComponent {\n\n}\n",
+            "sourceCode": "import {Component, Input} from '@angular/core';\nimport {NgClass, NgStyle} from \"@angular/common\";\n\n@Component({\n  selector: 'app-card',\n  templateUrl: './card.component.html',\n  styleUrls: ['./card.component.scss'],\n  imports: [\n    NgClass,\n    NgStyle\n  ],\n  standalone: true\n})\nexport class CardComponent {\n  @Input() color = '';\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".card {\n  box-shadow: 1px 10px 10px #f0f0f0;\n  padding: 20px;\n  border-radius: 50px;\n}\n",
+                    "data": ".card {\n  box-shadow: 1px 10px 10px #f0f0f0;\n  padding: 20px;\n  border-radius: 50px;\n}\n\n.danger {\n  box-shadow: 1px 10px 10px #a00;\n}\n",
                     "styleUrl": "./card.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "<div class=\"card\">\n  <ng-content></ng-content>\n</div>\n"
+            "templateData": "<div class=\"card\" [ngStyle]=\"{ 'box-shadow': '1px 10px 10px ' + color }\">\n  <ng-content></ng-content>\n</div>\n"
         },
         {
             "name": "HeaderComponent",
@@ -508,7 +525,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {},\n}"
+                "defaultValue": "{\n  args: {\n    color: '#a00'\n  },\n}"
             },
             {
                 "name": "Large",
@@ -598,7 +615,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<CardComponent>",
-                "defaultValue": "{\n  title: 'Components/Card',\n  component: CardComponent,\n  excludeStories: /.*Data$/,\n  tags: ['autodocs'],\n  render: (args: CardComponent) => ({\n    template: '<app-card>Hello world</app-card>'\n  }),\n}"
+                "defaultValue": "{\n  title: 'Components/Card',\n  component: CardComponent,\n  excludeStories: /.*Data$/,\n  tags: ['autodocs'],\n  render: (args: CardComponent) => ({\n    props: {\n      ...args,\n      color: args.color,\n    },\n    template: '<app-card [color]=\"color\">Hello world</app-card>',\n  }),\n  argTypes: {\n    color: {\n      control: 'color',\n    },\n  },\n}"
             },
             {
                 "name": "preview",
@@ -699,7 +716,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {},\n}"
+                    "defaultValue": "{\n  args: {\n    color: '#a00'\n  },\n}"
                 },
                 {
                     "name": "meta",
@@ -709,7 +726,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<CardComponent>",
-                    "defaultValue": "{\n  title: 'Components/Card',\n  component: CardComponent,\n  excludeStories: /.*Data$/,\n  tags: ['autodocs'],\n  render: (args: CardComponent) => ({\n    template: '<app-card>Hello world</app-card>'\n  }),\n}"
+                    "defaultValue": "{\n  title: 'Components/Card',\n  component: CardComponent,\n  excludeStories: /.*Data$/,\n  tags: ['autodocs'],\n  render: (args: CardComponent) => ({\n    props: {\n      ...args,\n      color: args.color,\n    },\n    template: '<app-card [color]=\"color\">Hello world</app-card>',\n  }),\n  argTypes: {\n    color: {\n      control: 'color',\n    },\n  },\n}"
                 }
             ],
             "src/stories/Button.stories.ts": [
@@ -941,7 +958,7 @@
                 "linktype": "component",
                 "name": "CardComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/2",
                 "status": "low"
             },
             {
