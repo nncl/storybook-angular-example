@@ -9,7 +9,7 @@
     "test": "ng test",
     "storybook": "ng run storybook-example:storybook",
     "build-storybook": "ng run storybook-example:build-storybook",
-    "chromatic": "npx chromatic --project-token=chpt_23c78ce546ffe5f"
+    "chromatic": "npx chromatic --project-token=[YOUR-KEY-HERE]"
   },
   "private": true,
   "dependencies": {
